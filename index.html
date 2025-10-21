@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AL ZOURA - Coopérative de Production Agro-Pastorale</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --vert: #4a7c59;
+            --marron: #8b5a2b;
+            --beige: #f5e6d3;
+            --vert-fonce: #3a6147;
+            --marron-fonce: #6b4520;
+            --bleu: #2c5aa0;
+            --bleu-fonce: #1e3d6f;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: #333;
+            padding-top: 76px; /* Pour compenser la navbar fixe */
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+        
+        /* Header & Navigation */
+        .navbar {
+            background-color: var(--vert);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            padding: 15px 0;
+            z-index: 1000;
+        }
+        
+        .navbar.scrolled {
+            padding: 10px 0;
+            background-color: var(--vert);
+        }
+        
+        .navbar-brand img {
+            height: 70px; /* Logo plus grand */
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-nav .nav-link {
+            color: white !important;
+            font-weight: 500;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+        
+        .navbar-nav .nav-link:hover {
+            color: var(--beige) !important;
+        }
+        
+        .navbar-toggler {
+            border-color: white;
+        }
+        
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+        
+        .lang-btn {
+            background-color: white;
+            border: 1px solid var(--bleu);
+            color: var(--bleu);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .lang-btn:hover {
+            background-color: var(--beige);
+            color: var(--bleu);
+        }
+        
+        /* Sections générales */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            position: relative;
+            margin-bottom: 50px;
+            color: var(--marron);
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background-color: var(--vert);
+        }
+        
+        .text-center .section-title:after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* Section Accueil */
+        #accueil {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .carousel-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .carousel-item {
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .carousel-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease 0.3s both;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+        
+        .btn-primary-custom {
+            background-color: var(--vert);
+            border-color: var(--vert);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+        
+        .btn-primary-custom:hover {
+            background-color: var(--vert-fonce);
+            border-color: var(--vert-fonce);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        /* Section À propos */
+        #apropos {
+            background-color: #f9f9f9;
+        }
+        
+        .about-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .values-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            height: 100%;
+            transition: transform 0.3s ease;
+            border-top: 4px solid var(--vert);
+        }
+        
+        .values-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .values-card i {
+            font-size: 2.5rem;
+            color: var(--vert);
+            margin-bottom: 20px;
+        }
+        
+        /* Section Adhésion */
+        #adhesion {
+            background: linear-gradient(135deg, var(--beige) 0%, #fff 100%);
+        }
+        
+        .membership-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid var(--beige);
+        }
+        
+        .membership-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+        
+        .membership-icon {
+            width: 80px;
+            height: 80px;
+            background-color: var(--beige);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+        
+        .membership-icon i {
+            font-size: 2rem;
+            color: var(--marron);
+        }
+        
+        .membership-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--vert);
+            margin: 20px 0;
+        }
+        
+        .membership-features {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+        
+        .membership-features li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .membership-features li:last-child {
+            border-bottom: none;
+        }
+        
+        /* Section Projets */
+        .project-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+            height: 100%;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .project-card-header {
+            background-color: var(--vert);
+            color: white;
+            padding: 20px;
+        }
+        
+        .project-card-body {
+            padding: 25px;
+        }
+        
+        .project-feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .project-feature i {
+            color: var(--vert);
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        /* Section Galerie - CORRIGÉE */
+        #galerie {
+            background-color: #f9f9f9;
+        }
+        
+        .gallery-container {
+            position: relative;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            height: 400px; /* Hauteur fixe pour uniformiser */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Maintient le ratio et remplit le conteneur */
+            object-position: center; /* Centre l'image */
+            transition: transform 0.5s ease;
+        }
+        
+        /* Style spécifique pour les images verticales */
+        .gallery-item.vertical img {
+            object-fit: contain; /* Affiche l'image entière sans rognage */
+            background-color: #f8f9fa; /* Fond neutre pour les parties vides */
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 0%, rgba(74, 124, 89, 0.8) 100%);
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-start;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            padding: 20px;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        
+        .gallery-caption {
+            color: white;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+        
+        /* Section Contact */
+        .contact-info {
+            margin-bottom: 30px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .contact-item i {
+            background-color: var(--beige);
+            color: var(--marron);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .social-links {
+            display: flex;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--beige);
+            color: var(--marron);
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--vert);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .contact-form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        /* Footer amélioré */
+        footer {
+            background-color: var(--vert);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-logo img {
+            height: 80px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-about p {
+            color: #ddd;
+            line-height: 1.6;
+        }
+        
+        .footer-heading {
+            color: white;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-heading:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: white;
+        }
+        
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--beige);
+            padding-left: 5px;
+        }
+        
+        .footer-contact p {
+            color: #ddd;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .footer-contact i {
+            margin-right: 10px;
+            color: var(--beige);
+            margin-top: 3px;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 20px;
+            margin-top: 40px;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
+            .gallery-item {
+                height: 300px; /* Hauteur réduite sur mobile */
+            }
+            
+            .navbar-brand img {
+                height: 50px; /* Logo plus petit sur mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="#accueil">
+                    <!-- Logo sera ajouté ici -->
+                    <img src="img/logo.jpg" alt="AL ZOURA Logo">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#accueil">Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#apropos">À propos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#adhesion">Adhésion</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#projets">Projets</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#galerie">Galerie</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact">Contact</a>
+                        </li>
+                        <li class="nav-item ms-2">
+                            <button class="lang-btn" id="langToggle">EN</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Section Accueil -->
+    <section id="accueil">
+        <div class="carousel-background">
+            <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+                <div class="carousel-inner">
+                    <div class="carousel-item active" style="background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80');">
+                        <div class="carousel-overlay"></div>
+                    </div>
+                    <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1574943320219-553eb213f72d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80');">
+                        <div class="carousel-overlay"></div>
+                    </div>
+                    <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1625246339666-4f4e01d0e8ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80');">
+                        <div class="carousel-overlay"></div>
+                    </div>
+                    <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80');">
+                        <div class="carousel-overlay"></div>
+                    </div>
+                </div>
+                <!-- Contrôles du carrousel -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Précédent</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Suivant</span>
+                </button>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="hero-content">
+                        <h1 class="fr">Coopérative de production agro-pastorale et de transformation des produits locaux</h1>
+                        <h1 class="en" style="display: none;">Agro-pastoral production cooperative and local products transformation</h1>
+                        <p class="fr">Développement socio-économique par l'agriculture et l'élevage modernes</p>
+                        <p class="en" style="display: none;">Socio-economic development through modern agriculture and livestock farming</p>
+                        <a href="#projets" class="btn btn-primary-custom fr pulse-animation">Découvrir nos projets</a>
+                        <a href="#projets" class="btn btn-primary-custom en pulse-animation" style="display: none;">Discover our projects</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section À propos -->
+    <section id="apropos">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-title fr">À propos d'AL ZOURA</h2>
+                    <h2 class="section-title en" style="display: none;">About AL ZOURA</h2>
+                </div>
+            </div>
+            <div class="row mb-5">
+                <div class="col-lg-10 mx-auto">
+                    <div class="about-content fade-in">
+                        <p class="fr">AL ZOURA est une Société Coopérative simplifiée (SCOOPS) régie par les dispositions de l'Acte Uniforme de l'OHADA relatif au droit des sociétés coopératives. Notre mission est d'assurer le développement socio-économique de nos membres et sympathisants par la production, transformation et vente des produits agro-pastoraux et locaux.</p>
+                        <p class="en" style="display: none;">AL ZOURA is a Simplified Cooperative Society (SCOOPS) governed by the provisions of the OHADA Uniform Act relating to the law of cooperative societies. Our mission is to ensure the socio-economic development of our members and supporters through the production, processing and sale of agro-pastoral and local products.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="values-card fade-in">
+                        <i class="fas fa-handshake"></i>
+                        <h4 class="fr">Adhésion volontaire</h4>
+                        <h4 class="en" style="display: none;">Voluntary membership</h4>
+                        <p class="fr">Notre coopérative est ouverte à tous ceux qui partagent nos valeurs et objectifs.</p>
+                        <p class="en" style="display: none;">Our cooperative is open to all who share our values and objectives.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="values-card fade-in">
+                        <i class="fas fa-users"></i>
+                        <h4 class="fr">Pouvoir démocratique</h4>
+                        <h4 class="en" style="display: none;">Democratic power</h4>
+                        <p class="fr">Chaque membre a une voix égale dans les décisions de la coopérative.</p>
+                        <p class="en" style="display: none;">Each member has an equal voice in the cooperative's decisions.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="values-card fade-in">
+                        <i class="fas fa-leaf"></i>
+                        <h4 class="fr">Engagement communautaire</h4>
+                        <h4 class="en" style="display: none;">Community commitment</h4>
+                        <p class="fr">Nous contribuons au développement de notre communauté et à la protection de l'environnement.</p>
+                        <p class="en" style="display: none;">We contribute to the development of our community and environmental protection.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Adhésion -->
+    <section id="adhesion">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-title fr">Devenez Membre</h2>
+                    <h2 class="section-title en" style="display: none;">Become a Member</h2>
+                    <p class="lead fr">Rejoignez notre coopérative et participez au développement agro-pastoral</p>
+                    <p class="lead en" style="display: none;">Join our cooperative and participate in agro-pastoral development</p>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="membership-card fade-in">
+                        <div class="membership-icon">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <h3 class="fr">Adhésion Standard</h3>
+                        <h3 class="en" style="display: none;">Standard Membership</h3>
+                        <div class="membership-price">5.000 FCFA</div>
+                        <ul class="membership-features">
+                            <li class="fr">Droit d'adhésion à vie</li>
+                            <li class="en" style="display: none;">Lifetime membership right</li>
+                            <li class="fr">Participation aux assemblées générales</li>
+                            <li class="en" style="display: none;">Participation in general meetings</li>
+                            <li class="fr">Accès aux formations techniques</li>
+                            <li class="en" style="display: none;">Access to technical training</li>
+                            <li class="fr">Bénéfice des programmes d'entraide</li>
+                            <li class="en" style="display: none;">Benefit from mutual aid programs</li>
+                        </ul>
+                        <a href="mailto:direction@alzoura.oeg?subject=Demande d'adhésion à AL ZOURA&body=Je souhaite adhérer à la coopérative AL ZOURA. Merci de m'envoyer plus d'informations." class="btn btn-primary-custom w-100 fr">Adhérer maintenant</a>
+                        <a href="mailto:direction@alzoura.oeg?subject=Membership request to AL ZOURA&body=I wish to join the AL ZOURA cooperative. Please send me more information." class="btn btn-primary-custom w-100 en" style="display: none;">Join now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Projets -->
+    <section id="projets">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-title fr">Nos Projets</h2>
+                    <h2 class="section-title en" style="display: none;">Our Projects</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="project-card fade-in">
+                        <div class="project-card-header">
+                            <h3 class="fr">Projet P60 - Modernisation de la production rizicole</h3>
+                            <h3 class="en" style="display: none;">Project P60 - Modernization of rice production</h3>
+                        </div>
+                        <div class="project-card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="project-feature">
+                                        <i class="fas fa-bullseye"></i>
+                                        <div>
+                                            <h5 class="fr">Objectifs</h5>
+                                            <h5 class="en" style="display: none;">Objectives</h5>
+                                            <p class="fr">Aménager 1500 hectares pour la culture du riz et former 300 producteurs</p>
+                                            <p class="en" style="display: none;">Develop 1500 hectares for rice cultivation and train 300 producers</p>
+                                        </div>
+                                    </div>
+                                    <div class="project-feature">
+                                        <i class="fas fa-money-bill-wave"></i>
+                                        <div>
+                                            <h5 class="fr">Montant d'investissement</h5>
+                                            <h5 class="en" style="display: none;">Investment amount</h5>
+                                            <p class="fr">3.574.500.000 FCFA</p>
+                                        </div>
+                                    </div>
+                                    <div class="project-feature">
+                                        <i class="fas fa-users"></i>
+                                        <div>
+                                            <h5 class="fr">Cibles</h5>
+                                            <h5 class="en" style="display: none;">Targets</h5>
+                                            <p class="fr">Groupements de producteurs de riz</p>
+                                            <p class="en" style="display: none;">Rice producer groups</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="project-feature">
+                                        <i class="fas fa-chart-line"></i>
+                                        <div>
+                                            <h5 class="fr">Impact attendu</h5>
+                                            <h5 class="en" style="display: none;">Expected impact</h5>
+                                            <p class="fr">Augmentation de la production rizicole, amélioration des conditions de vie des producteurs, réduction de l'insécurité alimentaire</p>
+                                            <p class="en" style="display: none;">Increase in rice production, improvement of producers' living conditions, reduction of food insecurity</p>
+                                        </div>
+                                    </div>
+                                    <div class="project-feature">
+                                        <i class="fas fa-handshake"></i>
+                                        <div>
+                                            <h5 class="fr">Partenariats recherchés</h5>
+                                            <h5 class="en" style="display: none;">Partnerships sought</h5>
+                                            <p class="fr">Investisseurs, banques, institutions financières internationales</p>
+                                            <p class="en" style="display: none;">Investors, banks, international financial institutions</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Galerie CORRIGÉE -->
+    <section id="galerie">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-title fr">Galerie</h2>
+                    <h2 class="section-title en" style="display: none;">Gallery</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="gallery-item fade-in vertical">
+                        <img src="img/photo1.jpeg" alt="Activités agricoles">
+                        <div class="gallery-overlay">
+                            <div class="gallery-caption">
+                                <h5 class="fr">Activités agricoles</h5>
+                                <h5 class="en" style="display: none;">Agricultural activities</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="gallery-item fade-in">
+                        <img src="img/photo2.jpeg">
+                        <div class="gallery-overlay">
+                            <div class="gallery-caption">
+                                <h5 class="fr">Produits locaux</h5>
+                                <h5 class="en" style="display: none;">Local products</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="gallery-item fade-in vertical">
+                        <img src="img/photo3.jpeg" alt="Formation des producteurs">
+                        <div class="gallery-overlay">
+                            <div class="gallery-caption">
+                                <h5 class="fr">Formation des producteurs</h5>
+                                <h5 class="en" style="display: none;">Producer training</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <div class="gallery-item fade-in vertical">
+                        <img src="img/photo1.jpeg" alt="Infrastructures">
+                        <div class="gallery-overlay">
+                            <div class="gallery-caption">
+                                <h5 class="fr">Infrastructures</h5>
+                                <h5 class="en" style="display: none;">Infrastructure</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="gallery-item fade-in">
+                        <img src="img/photo2.jpeg" alt="Élevage">
+                        <div class="gallery-overlay">
+                            <div class="gallery-caption">
+                                <h5 class="fr">Élevage</h5>
+                                <h5 class="en" style="display: none;">Livestock</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="gallery-item fade-in">
+                        <img src="img/photo3.jpeg" alt="Transformation des produits">
+                        <div class="gallery-overlay">
+                            <div class="gallery-caption">
+                                <h5 class="fr">Transformation des produits</h5>
+                                <h5 class="en" style="display: none;">Product processing</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-title fr">Contactez-nous</h2>
+                    <h2 class="section-title en" style="display: none;">Contact Us</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="contact-info">
+                                <div class="contact-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <div>
+                                        <h5 class="fr">Localisation</h5>
+                                        <h5 class="en" style="display: none;">Location</h5>
+                                        <p>Mandalia, N'Djamena, Tchad</p>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <i class="fas fa-phone"></i>
+                                    <div>
+                                        <h5 class="fr">Téléphone</h5>
+                                        <h5 class="en" style="display: none;">Phone</h5>
+                                        <p>+235 66 27 11 03<br>+235 99 90 55 12</p>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <i class="fas fa-envelope"></i>
+                                    <div>
+                                        <h5 class="fr">Email</h5>
+                                        <h5 class="en" style="display: none;">Email</h5>
+                                        <p><a href="mailto:direction@alzoura.oeg" class="text-decoration-none">direction@alzoura.oeg</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="social-links">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="contact-form">
+                                <h4 class="mb-4 fr">Envoyez-nous un message</h4>
+                                <h4 class="mb-4 en" style="display: none;">Send us a message</h4>
+                                <p class="fr">Pour toute question ou demande d'information, n'hésitez pas à nous contacter directement par email.</p>
+                                <p class="en" style="display: none;">For any questions or information requests, feel free to contact us directly by email.</p>
+                                <a href="mailto:direction@alzoura.oeg?subject=Demande d'information AL ZOURA&body=Bonjour, je souhaite obtenir plus d'informations sur vos activités." class="btn btn-primary-custom w-100 mt-3 fr">Nous contacter par email</a>
+                                <a href="mailto:direction@alzoura.oeg?subject=Information request AL ZOURA&body=Hello, I would like to get more information about your activities." class="btn btn-primary-custom w-100 mt-3 en" style="display: none;">Contact us by email</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer amélioré -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="footer-logo">
+                        <img src="img/logo.jpg" alt="AL ZOURA Logo">
+                    </div>
+                    <div class="footer-about">
+                        <p class="fr">AL ZOURA est une coopérative de production agro-pastorale et de transformation des produits locaux, engagée dans le développement socio-économique de ses membres.</p>
+                        <p class="en" style="display: none;">AL ZOURA is an agro-pastoral production and local products processing cooperative, committed to the socio-economic development of its members.</p>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5 class="footer-heading fr">Liens rapides</h5>
+                    <h5 class="footer-heading en" style="display: none;">Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="#accueil" class="fr">Accueil</a><a href="#accueil" class="en" style="display: none;">Home</a></li>
+                        <li><a href="#apropos" class="fr">À propos</a><a href="#apropos" class="en" style="display: none;">About</a></li>
+                        <li><a href="#adhesion" class="fr">Adhésion</a><a href="#adhesion" class="en" style="display: none;">Membership</a></li>
+                        <li><a href="#projets" class="fr">Projets</a><a href="#projets" class="en" style="display: none;">Projects</a></li>
+                        <li><a href="#galerie" class="fr">Galerie</a><a href="#galerie" class="en" style="display: none;">Gallery</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="footer-heading fr">Nos activités</h5>
+                    <h5 class="footer-heading en" style="display: none;">Our Activities</h5>
+                    <ul class="footer-links">
+                        <li class="fr">Production agricole</li>
+                        <li class="en" style="display: none;">Agricultural production</li>
+                        <li class="fr">Élevage moderne</li>
+                        <li class="en" style="display: none;">Modern livestock farming</li>
+                        <li class="fr">Transformation des produits</li>
+                        <li class="en" style="display: none;">Product processing</li>
+                        <li class="fr">Formation des producteurs</li>
+                        <li class="en" style="display: none;">Producer training</li>
+                        <li class="fr">Commercialisation</li>
+                        <li class="en" style="display: none;">Marketing</li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="footer-heading fr">Contact</h5>
+                    <h5 class="footer-heading en" style="display: none;">Contact</h5>
+                    <div class="footer-contact">
+                        <p><i class="fas fa-map-marker-alt"></i> Mandalia, N'Djamena, Tchad</p>
+                        <p><i class="fas fa-phone"></i> +235 66 27 11 03</p>
+                        <p><i class="fas fa-envelope"></i> direction@alzoura.oeg</p>
+                    </div>
+                    <div class="social-links mt-3">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="fr">© 2025 Al Zoura – Tous droits réservés</p>
+                        <p class="en" style="display: none;">© 2025 Al Zoura – All rights reserved</p>
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <p class="fr">Site développé par Positive Impact</p>
+                        <p class="en" style="display: none;">Website developed by Positive Impact</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Navigation fixe avec effet de défilement
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Navigation fluide
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 75,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Animation au défilement
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const fadeInOnScroll = () => {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', fadeInOnScroll);
+        // Exécuter une fois au chargement pour les éléments déjà visibles
+        fadeInOnScroll();
+
+        // Fonctionnalité de changement de langue
+        const langToggle = document.getElementById('langToggle');
+        let currentLang = 'fr';
+        
+        langToggle.addEventListener('click', function() {
+            const frElements = document.querySelectorAll('.fr');
+            const enElements = document.querySelectorAll('.en');
+            
+            if (currentLang === 'fr') {
+                // Passer à l'anglais
+                frElements.forEach(el => el.style.display = 'none');
+                enElements.forEach(el => el.style.display = 'block');
+                langToggle.textContent = 'FR';
+                currentLang = 'en';
+            } else {
+                // Revenir au français
+                enElements.forEach(el => el.style.display = 'none');
+                frElements.forEach(el => el.style.display = 'block');
+                langToggle.textContent = 'EN';
+                currentLang = 'fr';
+            }
+        });
+
+        // Configuration du carrousel
+        const heroCarousel = document.getElementById('heroCarousel');
+        if (heroCarousel) {
+            const carousel = new bootstrap.Carousel(heroCarousel, {
+                interval: 5000,
+                wrap: true,
+                pause: false
+            });
+        }
+    </script>
+</body>
+</html>
